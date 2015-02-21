@@ -1,0 +1,4 @@
+services:
+#    smithy_shell.example:
+#        class: Smithy\ShellBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

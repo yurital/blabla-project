@@ -1,0 +1,4 @@
+services:
+#    store_data.example:
+#        class: Store\DataBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

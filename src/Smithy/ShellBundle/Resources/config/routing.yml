@@ -1,0 +1,3 @@
+smithy_shell_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: SmithyShellBundle:Default:index }
