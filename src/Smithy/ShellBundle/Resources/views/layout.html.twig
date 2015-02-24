@@ -1,0 +1,167 @@
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Smithysoft</title>
+   
+    {% stylesheets '@Bundles/smithyshell/css/style.css'
+                   '@Bundles/smithyshell/css/style.css' 
+    %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+{% block body %}
+
+<!-- -------------------------- HEADER --------------------------- -->
+
+    <div id="main-wrapper">      
+        <header id="header">     
+            <div class="header-holder">  <!--  Логотип  -->
+                <div class="header-logo">
+                    <a href="#">Smithysoft</a>
+                </div>
+                <div class="language-and-search">  
+                    <ul>  <!-- Языки версий сайта --> 
+                        <li class="lang-active"><a href="#">ENG</a></li>
+                        <li><a href="#">RUS</a></li>
+                        <li><a href="#">UA</a></li>
+                        <li><a href="#">GE</a></li>
+                    </ul>
+                    <div class="search-box">  <!--  Основной поиск  -->
+	                    <div class="click"></div>
+	                    <div class="search-form">
+		                    <form role="search" method="get" id="searchform" action="">
+        	                    <input type="text" class="form-control" placeholder="Search..." />
+		                    </form>
+	                    </div>
+                    </div>
+                </div>    
+            </div>
+            <nav class="navigation">  <!--  Основное меню  -->
+                <ul>
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Technology</a></li>
+                    <li><a href="#">IT-courses</a></li>
+                    <li><a href="#">Brief</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="container">  
+			    <ul id="gn-menu" class="gn-menu-main">
+			    	<li class="gn-trigger">  <!--  Второстепенное бургер-меню  -->
+				    	<a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+					    <nav class="gn-menu-wrapper"> 
+					    	<div class="gn-scroller">
+							    <ul class="gn-menu">
+							    	<li class="active-page-color"><a class="gn-icon gn-icon-home">Home</a></li>
+							    	<li><a class="gn-icon gn-icon-portfolio">Portfolio</a></li>
+								    <li><a class="gn-icon gn-icon-courses">IT-courses</a></li>
+								    <li><a class="gn-icon gn-icon-brief">Brief</a></li>
+							    	<li><a class="gn-icon gn-icon-contacts">Contact</a></li>
+							    </ul>
+						    </div>
+					    </nav>
+				    </li>
+                    <div class="column">  <!--  Второстепенный поиск  -->
+                        <div id="sb-search" class="sb-search">
+				            <form>
+				                <input class="sb-search-input" placeholder="Search..." type="text" value="" name="search" id="search">
+                                <input class="sb-search-submit" type="submit" value="">
+                                <span class="sb-icon-search"></span>
+                            </form>
+                        </div>
+                    </div> 
+                </ul>
+            </div>
+        </header>      
+    
+<!-- -------------------------- CONTENT --------------------------- -->
+   
+<section id="main-contant">
+    {% block content %}
+    {% endblock %}
+</section>
+    </div>
+ 
+<!-- -------------------------- FOOTER --------------------------- -->    
+     
+    <footer id="footer">      
+        <div class="footer-holder">
+            <div class="footer-about">  <!--  Мини логотип и информация о компании  -->
+                <p>Smithysoft is a close-knit team of <span>product designers</span> who help companies design better web sites, services, anf online profucts.We’ve worked with more than 200 start-ups since 2010.</p>
+            </div>
+            <div class="contact-and-social-holder">
+                <div class="footer-contacts">  <!--  Контакты  -->
+                    <div class="wanna-talk">
+                        <p>Wanna talk?</p>
+                        <p>Call us at <span>+38(093) 2756828</span></p>
+                    </div>
+                    <div class="not-a-big">
+                        <p>Not a big talker?</p>
+                        <p>Email usnat <span>support@smithysoft.com</span></p>
+                    </div>
+                </div>
+                <div class="footer-social">  <!--  Социальные иконки  -->
+                    <p>CAN'T GET ENOUGHT OF SMITHYSOFT? <span>YOU'RE IN LUCK!</span></p>
+                    <div class="google"><a href="#"></a></div>
+                    <div class="facebook"><a href="#"></a></div>
+                    <div class="vkontakte"><a href="#"></a></div>
+                    <div class="linkedin"><a href="#"></a></div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="copyright-holder">       
+                <p>Smitysoft&trade; All Rights Reserved.</p>
+                <p>2010-2015</p>
+            </div>    
+        </div>
+    </footer>
+    
+<!-- +++ ПОДКЛЮЧЕНИЕ БИБЛИОТЕКИ JQUERY, JS И ИНИЦИАЛИЗАЦИЯ БУРГЕР МЕНЮ, ПОИСКА И ДОП.ПОИСКА +++ -->
+    
+    <script type="text/javascript" src="{{asset ('@Bundles/smithyshell/js/search_and_menu.js')}}"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" charset="utf-8"></script>
+    <script>
+        var $navigation = $(".navigation");  // Фиксация меню в верху окна браузера при скроле вниз/верх
+        var $wrapperMenu = $(".container");  
+        var $gnMenu = $(".gn-menu-main");  
+        var $gnMenuWrapper = $(".gn-menu-wrapper");  
+        $(window).scroll(function(){  
+            // Фиксация основного меню
+            if ( $(this).scrollTop() > 120 && $navigation.hasClass("navigation") ){
+                $navigation.removeClass("navigation").addClass("navigation-scroll");
+            } else if($(this).scrollTop() <= 120 && $navigation.hasClass("navigation-scroll")) {
+                $navigation.removeClass("navigation-scroll").addClass("navigation");
+            }  
+            // Фиксация второстепенного бургер-меню и доп.поиска
+            if ( $(this).scrollTop() > 96 && $wrapperMenu.hasClass("container") ){
+                $wrapperMenu.removeClass("container").addClass("container-scroll");
+            } else if($(this).scrollTop() <= 96 && $wrapperMenu.hasClass("container-scroll")) {
+                $wrapperMenu.removeClass("container-scroll").addClass("container");
+            }
+            if ( $(this).scrollTop() > 96 && $gnMenu.hasClass("gn-menu-main") ){
+                $gnMenu.removeClass("gn-menu-main").addClass("gn-menu-main-scroll");
+            } else if($(this).scrollTop() <= 96 && $gnMenu.hasClass("gn-menu-main-scroll")) {
+                $gnMenu.removeClass("gn-menu-main-scroll").addClass("gn-menu-main");
+            }
+            if ( $(this).scrollTop() > 96 && $gnMenuWrapper.hasClass("gn-menu-wrapper") ){
+                $gnMenuWrapper.removeClass("gn-menu-wrapper").addClass("gn-menu-wrapper-scroll");
+            } else if($(this).scrollTop() <= 96 && $gnMenuWrapper.hasClass("gn-menu-wrapper-scroll")) {
+                $gnMenuWrapper.removeClass("gn-menu-wrapper-scroll").addClass("gn-menu-wrapper");
+            }
+        });
+        $('.click').toggle(function(){  // JQuery анимации для основного поиска  
+             $('.search-form').animate({'right':'37'},400);
+             return false;
+        },
+        function() {
+             $('.search-form').animate({'right':'-300'},400);
+             return false;
+        });
+    </script>
+    <script>
+        new gnMenu( document.getElementById( 'gn-menu' ) );  // Вызов js бургер-меню
+        new UISearch( document.getElementById( 'sb-search' ) );  // Вызов js доп.поиска
+    </script>
+{% endblock %}
